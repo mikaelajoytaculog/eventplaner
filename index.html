@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <title>Events Planner</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Open+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/glightbox.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet" />
+
+<style>
+    /* Services Section Styles */
+    .section_title-text {
+        font-size: 2.5rem;
+        color: #026670;
+        font-weight: 700;
+    }
+    .section_description-text {
+        font-size: 1.1rem;
+        color: #5a5a5a;
+        margin-top: 10px;
+    }
+
+    .service_card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+    .service_card:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .service_img img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: all 0.3s ease;
+    }
+    .service_card:hover .service_img img {
+        transform: scale(1.1);
+    }
+    .service_info {
+        padding: 20px;
+        text-align: center;
+    }
+    .service_title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #026670;
+        margin-bottom: 10px;
+    }
+    .service_summary {
+        font-size: 1rem;
+        color: #5a5a5a;
+        margin-bottom: 20px;
+    }
+    .btn-primary {
+        background-color: #f37748;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: #026670;
+    }
+
+       /* Modal Customization */
+       .modal-content {
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border: none;
+    }
+
+    .modal-header {
+        background-color: #026670;
+        color: #fff;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+
+    .btn-close {
+        background-color: transparent;
+        border: none;
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .modal-body h5 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #026670;
+        margin-bottom: 20px;
+    }
+
+    .modal-body p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .modal-body ul {
+        font-size: 1rem;
+        color: #555;
+        margin-left: 20px;
+        line-height: 1.6;
+    }
+
+    .modal-body ul li {
+        margin-bottom: 8px;
+    }
+
+    .modal-footer {
+        border-top: 1px solid #eee;
+        padding: 10px;
+        justify-content: center;
+    }
+
+    .btn-secondary {
+        background-color: #f37748;
+        border: none;
+        padding: 8px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+        background-color: #026670;
+    }
+
+    /* Responsive Adjustments for Modals */
+    @media (max-width: 768px) {
+        .modal-dialog {
+            max-width: 90%;
+        }
+    }
+</style>
+</head>
+
+<body>
+  <!------- Header ------->
+  <header id="header" class="">
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
+      <div class="container">
+        <!-- Logo -->
+        <a class="logo" href="/">
+          <img src="./assets/img/logo.png" alt="EventPlanner" />
+        </a>
+
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </button>
+
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse justify-content-md-end" id="navbarContent">
+          <ul class="navbar-nav mt-3 mt-lg-0">
+            <li><a class="nav_link active" href="#hero">Home</a></li>
+            <li>
+              <a class="nav_link" href="#services">Services</a>
+            </li>
+            <li><a class="nav_link" href="#about">About</a></li>
+            <li>
+              <a class="nav_link" href="#gallery">Gallery</a>
+            </li>
+            <li><a class="nav_link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+  <!-- End Header -->
+
+  <!------- Main ------->
+  <main>
+<!------- Hero Section ------->
+<section id="hero">
+  <div class="hero_video">
+    <iframe 
+      class="hero_iframe"
+      src="https://www.youtube.com/embed/rsYVjsROtYs?autoplay=1&mute=1&loop=1&playlist=rsYVjsROtYs" 
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerpolicy="strict-origin-when-cross-origin" 
+      allowfullscreen>
+    </iframe>
+    <!-- Overlay for Darkening -->
+    <div class="video_overlay"></div>
+  </div>
+  <div class="content">
+    <div class="container text-center">
+      <h1 class="display-4 fw-normal text-light">We Bring Your Events To Life</h1>
+      <h2 class="text-light">
+        Whether it's a wedding, corporate event, or private party, we create unforgettable experiences tailored to your vision.
+      </h2>
+      <a id="contact_btn" class="btn btn-light" href="#contact">Contact Us</a>
+    </div>
+  </div>
+</section>
+<!-- End Hero -->
+
+
+
+
+  <!------- Services Section -------> 
+<section id="services" class="services">
+  <div class="container" data-aos="fade-up">
+      <div class="section_title">
+          <h2>What we do</h2>
+          <p>Provide the Best Event Management Services</p>
+      </div>
+
+      <div class="content row">
+          <div class="col-lg-4 col-md-6">
+              <!-- CARD ITEM -->
+              <div class="card mt-4">
+                  <img src="./assets/img/gallery/event-wedding.jpg" alt="Wedding Planning" class="card-img-top"/>
+                  <div class="card-body">
+                      <h5 class="card-title">Wedding Planning</h5>
+                      <p class="card-text">
+                          Your wedding day should be as unique as your love story. We take the stress out of planning so you can focus on the joy of the moment. From venue selection to breathtaking decor, our team designs weddings that are as unforgettable as the love they celebrate.
+                      </p>
+                      <!-- Trigger Modal -->
+                      <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#weddingModal">Learn More</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+              <!-- CARD ITEM -->
+              <div class="card mt-4">
+                  <img src="./assets/img/gallery/corporate.jpg" alt="Corporate Event" class="card-img-top"/>
+                  <div class="card-body">
+                      <h5 class="card-title">Corporate Event</h5>
+                      <p class="card-text">
+                          Elevate your brand with corporate events that impress. From seamless conferences to inspiring product launches and team-building retreats, we provide professional event planning that aligns with your company’s goals and vision.
+                      </p>
+                      <!-- Trigger Modal -->
+                      <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#corporateModal">Learn More</button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+              <!-- CARD ITEM -->
+              <div class="card mt-4">
+                  <img src="./assets/img/gallery/event-birthday.jpg" alt="Private Occasion" class="card-img-top"/>
+                  <div class="card-body">
+                      <h5 class="card-title">Private Occasion</h5>
+                      <p class="card-text">
+                          Life’s milestones deserve to be celebrated in style. Whether it’s a milestone birthday, a heartfelt anniversary, or a festive gathering, we craft personalized events that reflect your unique personality and preferences.
+                      </p>
+                      <!-- Trigger Modal -->
+                      <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#privateOccasionModal">Learn More</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End Services Section -->
+
+<!-- Wedding Modal -->
+<div class="modal fade" id="weddingModal" tabindex="-1" aria-labelledby="weddingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="weddingModalLabel">Wedding Planning</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h5>Your Dream Wedding, Our Expert Planning</h5>
+              <p>
+                  From the moment you say "yes" to the moment you walk down the aisle, our team of experts is with you every step of the way. We offer personalized consultation and custom design services to create the wedding of your dreams. From venue selection, decor, catering, and entertainment, we take care of it all, ensuring that every detail is perfect. 
+                  <strong>Let us handle the stress so you can enjoy the most important day of your life.</strong>
+              </p>
+              <p><strong>What we offer:</strong></p>
+              <ul>
+                  <li>Venue and Vendor Coordination</li>
+                  <li>Custom Event Design and Decor</li>
+                  <li>Catering and Menu Planning</li>
+                  <li>Event Timeline and Schedule Management</li>
+                  <li>Guest List and Invitation Handling</li>
+              </ul>
+              <p>Reach out to us today for a personalized consultation and take the first step toward your dream wedding!</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Corporate Modal -->
+<div class="modal fade" id="corporateModal" tabindex="-1" aria-labelledby="corporateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="corporateModalLabel">Corporate Event</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h5>Professional Events for Corporate Excellence</h5>
+              <p>
+                  From high-level conferences to team-building retreats, we specialize in organizing corporate events that align with your business goals and brand identity. Our team works with you to understand your objectives and design an event that engages employees, clients, and stakeholders, leaving a lasting impact.
+                  <strong>Our attention to detail ensures that every element, from venue selection to post-event feedback, exceeds expectations.</strong>
+              </p>
+              <p><strong>Services include:</strong></p>
+              <ul>
+                  <li>Corporate Conferences and Seminars</li>
+                  <li>Product Launches</li>
+                  <li>Team-Building Events</li>
+                  <li>Executive Retreats</li>
+                  <li>Brand Activations</li>
+              </ul>
+              <p>Contact us to discuss your next corporate event and elevate your brand experience.</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Private Occasion Modal -->
+<div class="modal fade" id="privateOccasionModal" tabindex="-1" aria-labelledby="privateOccasionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="privateOccasionModalLabel">Private Occasion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h5>Celebrate Life’s Special Moments</h5>
+              <p>
+                  Whether you're celebrating a milestone birthday, a memorable anniversary, or simply a special gathering, we tailor every aspect of your event to reflect your unique style. We ensure every moment is extraordinary with custom decor, thoughtful themes, and seamless execution.
+                  <strong>From intimate parties to large celebrations, let us make your event unforgettable.</strong>
+              </p>
+              <p><strong>Our Services Include:</strong></p>
+              <ul>
+                  <li>Custom Event Themes and Designs</li>
+                  <li>Catering and Menu Customization</li>
+                  <li>Entertainment Options</li>
+                  <li>Personalized Invitations and Decor</li>
+                  <li>Event Photography and Videography</li>
+              </ul>
+              <p>Get in touch with us today to create an event that reflects your personality and milestones.</p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+    <!------- About Section ------->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="about_img">
+              <img src="./assets/img/about.jpg" alt="" />
+            </div>
+          </div>
+          <div class="col-md-6 mt-5 mt-md-0 ps-md-5 text-white content">
+            <h2 class="section_title">About Us</h2>
+            <h3>We Plan & Design Events That Capture the Imagination.</h3>
+            <p class="mt-3">
+              With years of experience in event planning, our dedicated team of creative visionaries, meticulous coordinators, and logistical experts is committed to ensuring every detail is flawless. From brainstorming the perfect theme to managing the day-of execution, we handle it all with professionalism and passion
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End About Section -->
+
+    <!------- Gallery Section ------->
+    <section id="gallery" class="gallery">
+      <div class="container" data-aos="fade-up">
+        <div class="section_title">
+          <h2>Gallery</h2>
+          <p>Some photos from Our Events</p>
+        </div>
+
+        <div class="content">
+          <div class="row g-0">
+            <!-- GALLERY ITEM -->
+            <div class="col-6 col-md-4">
+              <div class="gallery_item m-1">
+                <a href="assets/img/gallery/gallery-1.jpg" class="glightbox" data-gallery="gallery-item"
+                  data-description="Events Gallery">
+                  <img src="assets/img/gallery/gallery-1.jpg" alt="#MeetTheAdams" />
+                </a>
+              </div>
+            </div>
+            <!-- GALLERY ITEM -->
+            <div class="col-6 col-md-4">
+              <div class="gallery_item m-1">
+                <a href="assets/img/gallery/gallery-2.jpg" class="glightbox" data-gallery="gallery-item"
+                  data-description="Party @Santo Domingo">
+                  <img src="assets/img/gallery/gallery-2.jpg" alt="#MeetTheAdams" />
+                </a>
+              </div>
+            </div>
+            <!-- GALLERY ITEM -->
+            <div class="col-6 col-md-4">
+              <div class="gallery_item m-1">
+                <a href="assets/img/gallery/gallery-3.jpg" class="glightbox" data-gallery="gallery-item"
+                  data-description="#MeetTheAdams. Femi Adams and Joke Banks Wedding">
+                  <img src="assets/img/gallery/gallery-3.jpg" alt="#MeetTheAdams" />
+                </a>
+              </div>
+            </div>
+            <!-- GALLERY ITEM -->
+            <div class="col-6 col-md-4">
+              <div class="gallery_item m-1">
+                <a href="assets/img/gallery/gallery-4.jpg" class="glightbox" data-gallery="gallery-item"
+                  data-description="#Events Bantay">
+                  <img src="assets/img/gallery/gallery-4.jpg" alt="#MeetTheAdams" />
+                </a>
+              </div>
+            </div>
+            <!-- GALLERY ITEM -->
+            <div class="col-6 col-md-4">
+              <div class="gallery_item m-1">
+                <a href="assets/img/gallery/gallery-5.jpg" class="glightbox" data-gallery="gallery-item"
+                  data-description="Birthday Wedding of SDO">
+                  <img src="assets/img/gallery/gallery-5.jpg" alt="#MeetTheAdams" />
+                </a>
+              </div>
+            </div>
+            <!-- GALLERY ITEM -->
+            <div class="col-6 col-md-4">
+              <div class="gallery_item m-1">
+                <a href="assets/img/gallery/gallery-6.jpg" class="glightbox" data-gallery="gallery-item"
+                  data-description="Party Events">
+                  <img src="assets/img/gallery/gallery-6.jpg" alt="#MeetTheAdams" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Gallery Section -->
+
+    <!------- Contact Section ------->
+    <section id="contact" class="contact">
+      <div class="section_title">
+        <h2>Contact</h2>
+        <p>Get in touch with us</p>
+      </div>
+      <div class="container" data-aos="fade-up">
+        <div class="row info">
+          <div class="col-md-4">
+            <div class="info_box mb-4">
+              <i class="bi bi-pin-map"></i>
+              <h5>Our Address</h5>
+              <p>Sto Domingo, Ilocos Sur</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info_box mb-4">
+              <i class="bi bi-phone"></i>
+              <h5>Call Us</h5>
+              <p>+63 906 689 34746</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="info_box mb-4">
+              <i class="bi bi-envelope"></i>
+              <h5>Email Us</h5>
+              <p>mikaelajoytaculog@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="row contactBox">
+          <div class="col-lg-6 order-1 order-lg-0 map">
+            <!-- GOTO https://www.maps.ie/create-google-map/ to generate your location map iframe -->
+            <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Binongan%20Santo%20Domingo%20Ilocos%20Sur+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/">gps vehicle tracker</a></iframe></div>
+            <!-- END -->
+          </div>
+
+          <div class="col-lg-6 p-lg-5 form">
+            <form>
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="" />
+                </div>
+                <div class="col-md-6 mt-md-0 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email"
+                    required="" />
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone Number"
+                  required="" />
+              </div>
+              <div class="form-group">
+                <select class="form-select" required>
+                  <option selected="">Your Event Type</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="2">Corporate Event</option>
+                  <option value="2">Social Event</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message" required=""></textarea>
+              </div>
+              <!-- <div class="status">
+                  <div class="alert alert-success" role="alert">
+                    <div>Your message has been sent. Thank you!</div>
+                  </div>
+                  <div class="alert alert-danger" role="alert">
+                    <div class="error-message">Error! Message not sent.</div>
+                  </div>
+                </div> -->
+              <div>
+                <button type="submit" class="btn btn-dark">
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Contact Section -->
+  </main>
+  <!-- End Main -->
+
+  <!------- Footer ------->
+  <footer>
+    <div class="
+          container
+          d-flex
+          flex-wrap
+          justify-content-between
+          align-items-center
+        ">
+      <div class="col-md-6 d-flex align-items-center">
+        <span>© Copyright EventPlanner. All Rights Reserved</span>
+      </div>
+
+      <ul class="nav col-md-6 justify-content-end d-flex social">
+        <span>Designed by
+          <a href="http://" target="_blank"><b>Mikaela Taculog</b></a></span>
+        <li class="ms-3">
+          <a class="text-white" href="https://facebook.com/mikaelataculog">
+            <i class="bi-facebook"></i>
+          </a>
+        </li>
+        <li class="ms-3">
+          <a class="text-white" href="http://instagram.com/mmikaelataculog">
+            <i class="bi-instagram"></i>
+          </a>
+        </li>
+        <li class="ms-3">
+          <a class="text-white" href="https://twitter.com/mikaelataculog">
+            <i class="bi-twitter"></i>
+          </a>
+        </li>
+        <li class="ms-3">
+          <a class="text-white" href="https://wa.me/09068934746">
+            <i class="bi-whatsapp"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+    
+  </footer>
+  <!-- End Footer -->
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap.min.js"></script>
+  <script src="assets/vendor/glightbox.min.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
